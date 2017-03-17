@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html ng-app = "app">
+	<head>
+		<title>LiveBolt</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+		<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src="angular/angular.js"></script>
+    <script src="angular-route/angular-route.js"></script>
+		<script src="config.js"></script>
+    <script src="factories/factories.js"></script>
+    <script src="controllers/locks.js"></script>
+
+	</head>
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main">
+						<header>
+							<span class="avatar"><img src="images/avatar1.png" alt="" /></span>
+							<h1>LiveBolt</h1>
+							<p>Welcome home, Sour Patch Kids.</p>
+						</header>
+						<!--
+						<hr />
+						<h2>Extra Stuff!</h2>
+						<form method="post" action="#">
+							<div class="field">
+								<input type="text" name="name" id="name" placeholder="Name" />
+							</div>
+							<div class="field">
+								<input type="email" name="email" id="email" placeholder="Email" />
+							</div>
+							<div class="field">
+								<div class="select-wrapper">
+									<select name="department" id="department">
+										<option value="">Department</option>
+										<option value="sales">Sales</option>
+										<option value="tech">Tech Support</option>
+										<option value="null">/dev/null</option>
+									</select>
+								</div>
+							</div>
+							<div class="field">
+								<textarea name="message" id="message" placeholder="Message" rows="4"></textarea>
+							</div>
+							<div class="field">
+								<input type="checkbox" id="human" name="human" /><label for="human">I'm a human</label>
+							</div>
+							<div class="field">
+								<label>But are you a robot?</label>
+								<input type="radio" id="robot_yes" name="robot" /><label for="robot_yes">Yes</label>
+								<input type="radio" id="robot_no" name="robot" /><label for="robot_no">No</label>
+							</div>
+							<ul class="actions">
+								<li><a href="#" class="button">Get Started</a></li>
+							</ul>
+						</form>
+						<hr />
+                        class="fa-twitter"
+                        class="fa-instagram"
+						-->
+						<footer>
+							<ul class="icons">
+								<li>
+								<img id="myButton" src="images/lock.png" />
+	              <script type="text/javascript">
+	                  var images = ['images/lock.png', 'images/unlock.png'],
+	                      i = 1;
+	                  // preload
+	                  for (var j=images.length; j--;) {
+	                      var img = new Image();
+	                      img.src = images[j];
+	                  }
+	                  // event handler
+	                  document.getElementById('myButton').addEventListener('click', function() {
+	                      this.src = images[i >= images.length - 1 ? i = 0 : ++i];
+												console.log("here");
+												$.ajax({
+													url: '/lock',
+													method: 'POST',
+													success: function(data){
+
+													}
+												})
+
+	                  }, false);
+	              </script>
+							 </li>
+							</ul>
+						</footer>
+					</section>
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="copyright">
+							<li>&copy; LiveBolt</li><li>Sour Patch Kids</li>
+						</ul>
+					</footer>
+			</div>
+
+		<!-- Scripts -->
+			<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+			<script>
+				if ('addEventListener' in window) {
+					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+				}
+			</script>
+
+	</body>
+</html>

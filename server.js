@@ -1,36 +1,22 @@
-var http = require('http');
-var fs = require('fs');
+var express = require('express');
+var mongoose = require('mongoose');
+var path = require('path')
+var app = express();
+//var https = require('https');
+//var http = require('http');
+mongoose.connect("mongodb://localhost/senior_design")
+require('./server/config/routes.js')(app);
 
-//404 Response
-function send404Response(response) {
-    response.writeHead(404, {"Content-Type": "text/plain"});
-    response.write("Error 404: Page not found!");
-    response.end();
-}
+app.use(express.static('public'));  //static files to be served , living in public folder
+app.use(express.static(path.join(__dirname, './client')));
+app.use(express.static(path.join(__dirname, './public/bower_components')));
 
-function onRequest(request, response) {
+//app.engine('html', require('ejs').renderFile);
+//post request
 
-    if(request.method == 'GET' && request.url == '/') {
-        console.log(request.method);
-        response.writeHead(200, {"Content-Type": "text/html"});
-        fs.createReadStream("./index.html").pipe(response);
-    } else if (request.url == "assets/css/main.css"){
-        response.writeHead(200, {"Content-Type": "text/css"});
-        fs.readFile("assets/css/main.css", function(err, data){
-            response.end(data);
-        });
-    } else if (request.url == "/images/lock.png") {
-        response.writeHead(200, {"Content-Type": "image/png"});
+app.listen(8000, function(){
+    console.log("Listening on port 3000")
+});
 
-        fs.readFile("./images/background.jpg", function (err, data) {
-            response.end(data);
-        });
-    } else {
-        send404Response(response);
-    }
-}
-
-http.createServer(onRequest).listen(8888);
-console.log("Server is now running....");
-
-
+//render template with the state of the lock
+//lock/unlock client side (in javascript file) issued by the post request
