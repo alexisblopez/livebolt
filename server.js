@@ -26,7 +26,8 @@ app.get('/lock', function(req, res) {
  });
 
 //unlock rest get call
-app.get('/unlock', function(req, res) { 
+app.get('/unlock', function(req, res) {
+       console.log("unlock")
        piblaster.setPwm(22, 0.1);
        res.end('Box is unlocked');
  });

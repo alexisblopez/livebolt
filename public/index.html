@@ -10,11 +10,11 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<script src="angular/angular.js"></script>
-    <script src="angular-route/angular-route.js"></script>
+	<!--	<script src="angular/angular.js"></script>
+        <script src="angular-route/angular-route.js"></script>
 		<script src="config.js"></script>
     <script src="factories/factories.js"></script>
-    <script src="controllers/locks.js"></script>
+    <script src="controllers/locks.js"></script>-->
 
 	</head>
 	<body class="is-loading">
@@ -46,13 +46,20 @@
 	                  document.getElementById('myButton').addEventListener('click', function() {
 	                      this.src = images[i >= images.length - 1 ? i = 0 : ++i];
 												console.log("here");
+                          
+                                                app.get('/lock', function(req, res) { 
+                                                      console.log("lock")
+                                                      piblaster.setPwm(22, 0.145);
+                                                      res.end('Box is locked');
+                                                 });
 												//$.ajax({
-													//url: '/lock',
-                                                  //  type: 'GET',
+												//	url: '/lock',
+                                                //    type: 'GET',
 												//	success: function(data){
 
 												//	}
 												//})
+                                                
 	                  }, false);
 	              </script>
 							 </li>
