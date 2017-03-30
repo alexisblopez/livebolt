@@ -9,7 +9,7 @@ var piblaster = require('pi-blaster.js');    //include pi-blaster for PWM of ras
 //mongoose.connect("mongodb://localhost/senior_design")
 //require('./server/config/routes.js')(app);
 
-app.use(express.static('public'));  //static files to be served , living in public folder
+//app.use(express.static('public'));  //static files to be served , living in public folder
 //app.use(express.static(path.join(__dirname, './client')));
 //app.use(express.static(path.join(__dirname, './public/bower_components')));
 
