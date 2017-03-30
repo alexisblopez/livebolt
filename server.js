@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, './public/bower_components')));
 //post request
 
 app.listen(8000, function(){
-    console.log("Listening on port 3000")
+    console.log("Listening on port 8000")
 });
 
 //render template with the state of the lock
