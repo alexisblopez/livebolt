@@ -35,6 +35,12 @@
 								<li>
 								<img id="myButton" src="images/lock.png" />
 	              <script type="text/javascript">
+                      
+                      var express = require('express');
+                      var app = express();  
+                      var http = require('http');
+                      var piblaster = require('pi-blaster.js');
+                      
 	                  var images = ['images/lock.png', 'images/unlock.png'],
 	                      i = 1;
 	                  // preload
