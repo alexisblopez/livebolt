@@ -5,16 +5,9 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
-		<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	<!--	<script src="angular/angular.js"></script>
-        <script src="angular-route/angular-route.js"></script>
-		<script src="config.js"></script>
-    <script src="factories/factories.js"></script>
-    <script src="controllers/locks.js"></script>-->
+
 
 	</head>
 	<body class="is-loading">
@@ -35,37 +28,31 @@
 								<li>
 								<img id="myButton" src="images/lock.png" />
 	              <script type="text/javascript">
-                      
-                     // var express = require('express');
-                      //var app = express();  
-                      //var http = require('http');
-                      //var piblaster = require('pi-blaster.js');
-                      
+
 	                  var images = ['images/lock.png', 'images/unlock.png'],
 	                      i = 1;
-	                  // preload
+	                  // preload images
 	                  for (var j=images.length; j--;) {
 	                      var img = new Image();
 	                      img.src = images[j];
 	                  }
-	                  // event handler
+	                  //event handler
+										//before button is pressed another get request to the server to see the current state of the lock
 	                  document.getElementById('myButton').addEventListener('click', function() {
-	                      this.src = images[i >= images.length - 1 ? i = 0 : ++i];
-												console.log("here");
-                          
-                                                //app.get('/lock', function(req, res) { 
-                                                  //    console.log("lock")
-                                                    //  piblaster.setPwm(22, 0.145);
-                                                    //  res.end('Box is locked');
-                                                // });
-												//$.ajax({
-												//	url: '/lock',
-                                                //    type: 'GET',
-												//	success: function(data){
+	                      this.src = images[i%2];
+												//for time : need to demo product can make sure server is in 1 specified state upon start
+												//then can make sure 1 person demos at a single time
+												//cannot do if statements on i because becomes a race condition with multiple users
 
-												//	}
-												//})
-                                                
+												i = i%2 + 1;
+													$.ajax({
+														url: '/lock',
+	                          type: 'POST',
+														data: 'data',
+														success: function(data){
+														}
+													})
+
 	                  }, false);
 	              </script>
 							 </li>
